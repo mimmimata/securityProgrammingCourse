@@ -18,3 +18,10 @@ class FileReader:
             for line in fileToRead:
                 print(line)
             fileToRead.close()
+
+    def parseLine(self, lineToParse):
+        try:
+            lineString = str(lineToParse)
+        except ValueError:
+            print("Line cannot be cast as a string")
+            return
