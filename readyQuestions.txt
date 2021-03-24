@@ -1,0 +1,14 @@
+1. question: Who discovered penicillin? answer_options: a. Alexander Fleming
+2. question: Who was the first woman to win a Nobel Prize (in 1903)? answer_options: a. Marie Curie
+3. question: What part of the atom has no electric charge? answer_options: a. Neutron
+4. question: What is the symbol for potassium? answer_options: a. K
+5. question: Which planet is the hottest in the solar system? answer_options: a. Venus
+6. question: Which natural disaster is measured with a Richter scale? answer_options: a. Earthquakes
+7. question: What animals are pearls found in? answer_options: a. Oysters
+8. question: Which planet has the most gravity? answer_options: a. Jupiter
+9. question: What is the name of the man who launched eBay back in 1995? answer_options: a. Pierre Omidyar
+10. question: What does “HTTP” stand for? answer_options: a. HyperText Transfer Protocol
+11. question: Who is often called the father of the computer? answer_options: a. Charles Babbage
+12. question: What year was the very first model of the iPhone released? answer_options: a. 2007
+13. question: Who is often credited with creating the world’s first car? answer_options: a. Karl Benz
+14. question: How many parts (screws and bolts included) does the average car have? answer_options: a. 30 000
