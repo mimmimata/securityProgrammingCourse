@@ -4,7 +4,11 @@ class FileReader:
 
     def __init__(self):
         self.__fileToRead = None
+        # key: question number, value: question as string
         self.__questionStructure = {}
+        # key: question number, value: list of correct answers
+        self.__answerStructure = {}
+
 
     def addFileToRead(self, fileName):
         if isValidFileName(fileName):
@@ -19,6 +23,7 @@ class FileReader:
                 print(line)
             fileToRead.close()
 
+    # FIXME: not ready yet
     def parseLine(self, lineToParse):
         try:
             lineString = str(lineToParse)
