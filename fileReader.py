@@ -51,5 +51,11 @@ class FileReader:
             questionPart = questionResultObject.group()
             print("quetionPart: " + questionPart)
 
+        print("lineToParse: " + lineToParse)
+        answerOptionsResultObject = re.search(answerOptionsPartRegex, lineToParse)
+        print("answerOptionsResultObject: " + str(answerOptionsResultObject))
+        if answerOptionsResultObject is not None:
+            answerOptionsPart = answerOptionsResultObject.group()
+            print("answerOptionsPart: " + answerOptionsPart)
         #readyQuestion = questionObject(questionNumber)
         #return readyQuestion
