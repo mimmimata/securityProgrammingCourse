@@ -10,6 +10,7 @@ class Game:
         self.setPlayers(players)
         self.__gameStateObject = GameState()
         self.__fileReader = FileReader()
+        self.__questionsDict = {}
 
     def setPlayers(self, players):
         if isinstance(players, list):
@@ -27,7 +28,11 @@ class Game:
         if isValidAswerForOwnQuestionFile(isThereAFile):
             if isThereAFile == "no":
                 self.__fileReader.addFileToRead("readyQuestions.txt")
-                self.__fileReader.readFile("readyQuestions.txt")
+                questions = self.__fileReader.readFile("readyQuestions.txt")
+                if questions is not None:
+                    self.__questionsDict = questions
+                    print("questionDict printed from game.py")
+                    print(self.__questionsDict)
             # DO something real
 
 

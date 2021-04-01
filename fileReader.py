@@ -23,16 +23,19 @@ class FileReader:
                 for line in fileToRead:
                     amountOfReadLines = amountOfReadLines + 1
                     if isValidFileLine(line):
-                        print(line)
-                        self.parseLine(line)
+                        parsedQuestionObject = self.parseLine(line, amountOfReadLines)
+                        if parsedQuestionObject is not None:
+                            self.__questionStructure[parsedQuestionObject.getQuestionNumber()] = parsedQuestionObject
+                        else:
+                            return None
                     else:
-                        "stop reading the file and send some error here"
+                        print("Error: stop reading the file and send some error here")
+                        return None
             fileToRead.close()
 
         return self.__questionStructure
 
-    # FIXME: not ready yet
-    def parseLine(self, lineToParse):
+    def parseLine(self, lineToParse, lineNumber):
 
         questionNumber = None
         question = None
@@ -42,20 +45,23 @@ class FileReader:
         questionNumberResultObject = re.search(questionNumberRegex, lineToParse)
         if questionNumberResultObject is not None:
             questionNumber = questionNumberResultObject.group()
-            print("quetionNumber: " + questionNumber)
 
-        print("lineToParse: " + lineToParse)
         questionResultObject = re.search(questionPartRegex, lineToParse)
-        print("questionResultObject: " + str(questionResultObject))
         if questionResultObject is not None:
-            questionPart = questionResultObject.group()
-            print("quetionPart: " + questionPart)
+            question = questionResultObject.group()
 
-        print("lineToParse: " + lineToParse)
         answerOptionsResultObject = re.search(answerOptionsPartRegex, lineToParse)
-        print("answerOptionsResultObject: " + str(answerOptionsResultObject))
         if answerOptionsResultObject is not None:
-            answerOptionsPart = answerOptionsResultObject.group()
-            print("answerOptionsPart: " + answerOptionsPart)
-        #readyQuestion = questionObject(questionNumber)
-        #return readyQuestion
+            answerOptions = answerOptionsResultObject.group()
+
+        rightAnswerResultObject = re.search(rightAnswerPartRegex, lineToParse)
+        if rightAnswerResultObject is not None:
+            rightAnswer = rightAnswerResultObject.group()
+
+        if questionNumber is not None and question is not None and answerOptions is not None and rightAnswer is not None:
+            readyQuestion = questionObject(questionNumber, question, answerOptions, rightAnswer)
+            return readyQuestion
+        else:
+            print("Error parsing line. Please check that line is on correct format and only allowed characters are used. Line number was: " + str(lineNumber))
+            return None
+

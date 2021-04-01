@@ -1,6 +1,6 @@
 1. question: Who discovered penicillin? answer_options: [a. Alexander Fleming][b.][c.] correct_answer: [a]
 2. question: Who was the first woman to win a Nobel Prize in 1903? answer_options: [a. Marie Curie][b.][c.] correct_answer: [a]
-3. question: What part of the atom has no electric charge? answer_options: [a. Neutron][b.][c.] correct_answer: [a]
+3. question: What part of the atom has no electric %charge? answer_options: [a. Neutron][b.][c.] correct_answer: [a]
 4. question: What is the symbol for potassium? answer_options: [a. K][b.][c.] correct_answer: [a]
 5. question: Which planet is the hottest in the solar system? answer_options: [a. Venus][b.][c.] correct_answer: [a]
 6. question: Which natural disaster is measured with a Richter scale? answer_options: [a. Earthquakes][b.][c.] correct_answer: [a]
