@@ -46,4 +46,5 @@ class Game:
             player.printPlayer()
 
     def endGame(self):
+        # If some one has for example ten points, then game is over
         print("game over")

@@ -1,4 +1,5 @@
 from validator import *
+from questionObject import questionObject
 
 class FileReader:
 
@@ -23,14 +24,32 @@ class FileReader:
                     amountOfReadLines = amountOfReadLines + 1
                     if isValidFileLine(line):
                         print(line)
+                        self.parseLine(line)
                     else:
                         "stop reading the file and send some error here"
             fileToRead.close()
 
+        return self.__questionStructure
+
     # FIXME: not ready yet
     def parseLine(self, lineToParse):
-        try:
-            lineString = str(lineToParse)
-        except ValueError:
-            print("Line cannot be cast as a string")
-            return
+
+        questionNumber = None
+        question = None
+        answerOptions = None
+        rightAnswer = None
+
+        questionNumberResultObject = re.search(questionNumberRegex, lineToParse)
+        if questionNumberResultObject is not None:
+            questionNumber = questionNumberResultObject.group()
+            print("quetionNumber: " + questionNumber)
+
+        print("lineToParse: " + lineToParse)
+        questionResultObject = re.search(questionPartRegex, lineToParse)
+        print("questionResultObject: " + str(questionResultObject))
+        if questionResultObject is not None:
+            questionPart = questionResultObject.group()
+            print("quetionPart: " + questionPart)
+
+        #readyQuestion = questionObject(questionNumber)
+        #return readyQuestion

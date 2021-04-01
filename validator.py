@@ -11,7 +11,7 @@ acceptedAnswersForFileQuesiton = ["no", "yes"]
 acceptedAnswers = ["a","b","c"]
 acceptedQuestionNumberRegex = "[0-9]{0,3}\. "
 questionNumberRegex = "[0-9]{1,3}\."
-questionFilterRegex = "question: [A-Za-z0-9 ]+\?"
+questionPartRegex = "question: [A-Za-z0-9 ]+\?"
 # Must have a, b and c. If only a and b has answers, c have to be also marked but answer option can be empty
 answerOptionsPartRegex = "answer_options: \[a\.[A-Za-z0-9 ]+\]\[b\.[A-Za-z0-9 ]*\]\[c\.[A-Za-z0-9 ]*\]"
 rightAnswerPartRegex = "correct_answer: \[[a-c]{1}\]"
