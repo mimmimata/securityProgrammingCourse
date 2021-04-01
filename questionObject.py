@@ -35,5 +35,8 @@ class questionObject:
     def getRightAnswer(self):
         return self.__rightAnswer
 
+    def printQuestionWithNumber(self):
+        print(self.__questionNumber + " " + self.__question)
+
     def printObject(self):
         return str(self.__questionNumber) + " " + str(self.__question) + " " + str(self.__answerOptions) + " " + str(self.__rightAnswer)

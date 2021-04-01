@@ -49,14 +49,17 @@ class FileReader:
         questionResultObject = re.search(questionPartRegex, lineToParse)
         if questionResultObject is not None:
             question = questionResultObject.group()
+            # FIXME!!! question need to be only questions so remove question: from begin
 
         answerOptionsResultObject = re.search(answerOptionsPartRegex, lineToParse)
         if answerOptionsResultObject is not None:
             answerOptions = answerOptionsResultObject.group()
+            # FIXME!!! answerOptions needs to be parsed to be dict which containing key: a,b or c and value: answer
 
         rightAnswerResultObject = re.search(rightAnswerPartRegex, lineToParse)
         if rightAnswerResultObject is not None:
             rightAnswer = rightAnswerResultObject.group()
+            # FIXME!!! rightAnswer need to be only a, b or c. Remove [] from rightAnswer string
 
         if questionNumber is not None and question is not None and answerOptions is not None and rightAnswer is not None:
             readyQuestion = questionObject(questionNumber, question, answerOptions, rightAnswer)
