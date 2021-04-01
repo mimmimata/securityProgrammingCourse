@@ -8,6 +8,7 @@ class FileReader:
         self.__questionStructure = {}
         # key: question number, value: list of correct answers
         self.__answerStructure = {}
+        self.__maxFileLineAmount = 300
 
 
     def addFileToRead(self, fileName):
@@ -19,8 +20,14 @@ class FileReader:
         if isValidFileName(fileName):
             print("if isValidFileName passed")
             fileToRead = open(fileName, "r",  encoding="utf8")
-            for line in fileToRead:
-                print(line)
+            amountOfReadLines = 0
+            if not amountOfReadLines > self.__maxFileLineAmount:
+                for line in fileToRead:
+                    amountOfReadLines = amountOfReadLines + 1
+                    if isValidFileLine(line):
+                        print(line)
+                    else:
+                        "stop reading the file and send some error here"
             fileToRead.close()
 
     # FIXME: not ready yet
