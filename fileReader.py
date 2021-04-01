@@ -4,12 +4,9 @@ class FileReader:
 
     def __init__(self):
         self.__fileToRead = None
-        # key: question number, value: question as string
+        # key: question number, value: questionObject
         self.__questionStructure = {}
-        # key: question number, value: list of correct answers
-        self.__answerStructure = {}
         self.__maxFileLineAmount = 300
-
 
     def addFileToRead(self, fileName):
         if isValidFileName(fileName):
