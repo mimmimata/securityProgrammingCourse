@@ -1,6 +1,12 @@
 from validator import *
 from questionObject import questionObject
 
+questionTextPart = "question: "
+answerOptionsTextPart = "answer_options: "
+rightAnswerTextPart = "correct_answer: "
+leftBracketPart = "["
+rightBracketPart = "]"
+
 class FileReader:
 
     def __init__(self):
@@ -39,7 +45,8 @@ class FileReader:
 
         questionNumber = None
         question = None
-        answerOptions = None
+        # answerOptionsDict: key: a,b or c and value: answer
+        answerOptions = {}
         rightAnswer = None
 
         questionNumberResultObject = re.search(questionNumberRegex, lineToParse)
@@ -48,20 +55,27 @@ class FileReader:
 
         questionResultObject = re.search(questionPartRegex, lineToParse)
         if questionResultObject is not None:
-            question = questionResultObject.group()
-            # FIXME!!! question need to be only questions so remove question: from begin
+            notParsedQuestion = questionResultObject.group()
+            question = notParsedQuestion.replace(questionTextPart, '')
 
         answerOptionsResultObject = re.search(answerOptionsPartRegex, lineToParse)
         if answerOptionsResultObject is not None:
-            answerOptions = answerOptionsResultObject.group()
-            # FIXME!!! answerOptions needs to be parsed to be dict which containing key: a,b or c and value: answer
+            notParsedAnswerOptions = answerOptionsResultObject.group()
+            answerOptionsTextPartRemoved = notParsedAnswerOptions.replace(answerOptionsTextPart, '')
+            splittedAnswerOptions = answerOptionsTextPartRemoved.split(rightBracketPart)
+            for answerOptionPart in splittedAnswerOptions:
+                answerOption = answerOptionPart.replace(leftBracketPart, '')
+                if len(answerOption) > 3:
+                    answerOptions[answerOption[0]] = answerOption[3:]
+                elif len(answerOption) > 1:
+                    answerOptions[answerOption[0]] = ''
 
         rightAnswerResultObject = re.search(rightAnswerPartRegex, lineToParse)
         if rightAnswerResultObject is not None:
-            rightAnswer = rightAnswerResultObject.group()
-            # FIXME!!! rightAnswer need to be only a, b or c. Remove [] from rightAnswer string
+            notParsedRightAnswer = rightAnswerResultObject.group()
+            rightAnswer = notParsedRightAnswer.replace(rightAnswerTextPart, '').replace(leftBracketPart, '').replace(rightBracketPart, '')
 
-        if questionNumber is not None and question is not None and answerOptions is not None and rightAnswer is not None:
+        if questionNumber is not None and question is not None and len(answerOptions) > 0 and rightAnswer is not None:
             readyQuestion = questionObject(questionNumber, question, answerOptions, rightAnswer)
             return readyQuestion
         else:
