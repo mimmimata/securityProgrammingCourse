@@ -13,7 +13,7 @@ class Game:
         self.__fileReader = FileReader()
         self.__questionsDict = {}
         self.__round = 1
-        self.__playerOnTurn = None
+        self.__playersNumberOnTurn = 0
 
     def setPlayers(self, players):
         if isinstance(players, list):
@@ -26,7 +26,7 @@ class Game:
 
     def startGame(self):
         self.printPlayers()
-        self.__playerOnTurn = self.__players[0]
+        self.__playersNumberOnTurn = 0
         isThereAFile = input("Do you have your own question file? no/yes ")
         if isValidAswerForOwnQuestionFile(isThereAFile):
             if isThereAFile == "no":
@@ -40,20 +40,34 @@ class Game:
 
     def runGame(self):
         while self.__round <= len(self.__questionsDict):
-            question = self.__questionsDict[str(self.__round)]
-            question.printQuestionWithNumber()
-            answerOptions = question.getAnswerOptions()
-            for answerOption in answerOptions:
-                print("{}. ".format(answerOption) + answerOptions[answerOption])
-            # TODO: validate user input!!!
-            answer = input("{} input the correct answer: ".format(self.__playerOnTurn.getName()))
-
-
+            self.printPlayers()
+            self.askQuestion()
             self.__round = self.__round + 1
-            pass
+            self.nextPlayer()
 
         self.endGame()
 
+    def askQuestion(self):
+        question = self.__questionsDict[str(self.__round)]
+        question.printQuestionWithNumber()
+        answerOptions = question.getAnswerOptions()
+        for answerOption in answerOptions:
+            print("{}. ".format(answerOption) + answerOptions[answerOption])
+        answer = input("{} input the correct answer: ".format(self.__players[self.__playersNumberOnTurn].getName()))
+        if isValidAnswer(answer):
+            if answer == question.getRightAnswer():
+                self.__players[self.__playersNumberOnTurn].addPoints(question.getPoints())
+
+        else:
+            print("Invalid answer option! use only a, b or c")
+            self.askQuestion()
+
+    def nextPlayer(self):
+        nextPlayer = self.__playersNumberOnTurn + 1
+        if nextPlayer >= self.__numberOfPlayers:
+            self.__playersNumberOnTurn = 0
+        else:
+            self.__playersNumberOnTurn = nextPlayer
 
     def printPlayers(self):
         # Using for .. in structure it makes sure that any buffer overflows or off by one
@@ -63,4 +77,5 @@ class Game:
 
     def endGame(self):
         # If some one has for example ten points, then game is over
-        print("game over")
+        print("Game over!")
+        self.printPlayers()
