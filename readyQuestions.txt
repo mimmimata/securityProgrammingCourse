@@ -4,7 +4,7 @@
 4. question: What is the symbol for potassium? answer_options: [a. K][b.][c.] correct_answer: [a]
 5. question: Which planet is the hottest in the solar system? answer_options: [a. Venus][b. Jupiter][c. Saturnus] correct_answer: [a]
 6. question: Which natural disaster is measured with a Richter scale? answer_options: [a. Earthquakes][b.][c.] correct_answer: [a]
-7. question: What animals are pearls found in? answer_options: [a. Oysters][b.][c.] correct_answer: [a]s
+7. question: What animals are pearls found in? answer_options: [a. Oysters][b.][c.] correct_answer: [a]
 8. question: Which planet has the most gravity? answer_options: [a. Jupiter][b. Earth][c. Venus] correct_answer: [a]
 9. question: What is the name of the man who launched eBay back in 1995? answer_options: [a. Pierre Omidyar][b.][c.] correct_answer: [a]
 10. question: What does HTTP stand for? answer_options: [a. HyperText Transfer Protocol][b.][c.] correct_answer: [a]

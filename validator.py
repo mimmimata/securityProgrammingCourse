@@ -23,11 +23,10 @@ def isValidPlayerAmount(playerAmount):
     return playerAmount in acceptedPlayerAmounts
 
 def isValidPlayerName(playerName):
-    resultObject = re.search(validPlayerNameCharactersRegex, playerName)
-    if resultObject is not None:
-        print(resultObject.group())
-        if resultObject.group() == playerName:
-            return len(resultObject.group()) <= maxPlayerNameLength
+    playerNameresultObject = re.search(validPlayerNameCharactersRegex, playerName)
+    if playerNameresultObject is not None:
+        if playerNameresultObject.group() == playerName:
+            return len(playerNameresultObject.group()) <= maxPlayerNameLength
     return False
 
 def isValidAswerForOwnQuestionFile(answer):
@@ -37,16 +36,21 @@ def isValidAnswer(answer):
     return answer in acceptedAnswers
 
 def isValidFileName(fileName):
-    resultObject = re.search(acceptedFileName, fileName)
-    if resultObject is not None:
-        print(resultObject.group())
-        if resultObject.group() == fileName:
-            return len(resultObject.group()) <= maxFileNameLength
+    fileNameresultObject = re.search(acceptedFileName, fileName)
+    if fileNameresultObject is not None:
+        print(fileNameresultObject.group())
+        if fileNameresultObject.group() == fileName:
+            return len(fileNameresultObject.group()) <= maxFileNameLength
     return False
 
 # FIXME: make this return something real
 def isValidFileLine(lineToValidate):
-    return True
+    lineResultObject = re.search(fileLineRegex, lineToValidate)
+    print("lineResult: {} and lineToValidate: {}".format(lineResultObject, lineToValidate))
+    if lineResultObject is not None:
+        print("lineResultLenght: {} lineToValidateLenght: {}".format(len(lineResultObject.group()), len(lineToValidate.strip())))
+        return len(lineResultObject.group()) == len(lineToValidate.strip())
+    return False
 
 # white listing
 #black listing
