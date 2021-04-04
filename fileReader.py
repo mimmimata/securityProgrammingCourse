@@ -51,7 +51,8 @@ class FileReader:
 
         questionNumberResultObject = re.search(questionNumberRegex, lineToParse)
         if questionNumberResultObject is not None:
-            questionNumber = questionNumberResultObject.group()
+            questionNumberAndDot = questionNumberResultObject.group()
+            questionNumber = questionNumberAndDot.replace(".", '')
 
         questionResultObject = re.search(questionPartRegex, lineToParse)
         if questionResultObject is not None:

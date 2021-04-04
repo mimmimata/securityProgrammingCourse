@@ -1,6 +1,7 @@
 from gameStatus import *
 from validator import *
 from fileReader import FileReader
+from questionObject import questionObject
 
 class Game:
 
@@ -11,6 +12,8 @@ class Game:
         self.__gameStateObject = GameState()
         self.__fileReader = FileReader()
         self.__questionsDict = {}
+        self.__round = 1
+        self.__playerOnTurn = None
 
     def setPlayers(self, players):
         if isinstance(players, list):
@@ -22,8 +25,8 @@ class Game:
             print("Error: players variable is not a list")
 
     def startGame(self):
-        print("game started")
         self.printPlayers()
+        self.__playerOnTurn = self.__players[0]
         isThereAFile = input("Do you have your own question file? no/yes ")
         if isValidAswerForOwnQuestionFile(isThereAFile):
             if isThereAFile == "no":
@@ -31,17 +34,25 @@ class Game:
                 questions = self.__fileReader.readFile("readyQuestions.txt")
                 if questions is not None:
                     self.__questionsDict = questions
-                    print("questionDict printed from game.py")
-                    print(self.__questionsDict)
-            # DO something real
-
-
-
-            pass
+            self.runGame()
         else:
             print("Error: Incorrect input. Please enter 'no' or 'yes'")
 
+    def runGame(self):
+        while self.__round <= len(self.__questionsDict):
+            question = self.__questionsDict[str(self.__round)]
+            question.printQuestionWithNumber()
+            answerOptions = question.getAnswerOptions()
+            for answerOption in answerOptions:
+                print("{}. ".format(answerOption) + answerOptions[answerOption])
+            # TODO: validate user input!!!
+            answer = input("{} input the correct answer: ".format(self.__playerOnTurn.getName()))
 
+
+            self.__round = self.__round + 1
+            pass
+
+        self.endGame()
 
 
     def printPlayers(self):

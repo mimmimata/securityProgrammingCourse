@@ -6,6 +6,7 @@ class questionObject:
         self.__question = question
         self.__answerOptions = answerOptions
         self.__rightAnswer = rightAnswer
+        self.__points = 1
 
     def setQuestionNumber(self, questionNumber):
         if isinstance(questionNumber, int):
@@ -26,7 +27,7 @@ class questionObject:
             self.__answerOptions = answerOptions
 
     def getAnswerOptions(self):
-        return self.__AnswerOptions
+        return self.__answerOptions
 
     def setRightAnswer(self, rightAnswer):
         if isinstance(rightAnswer, str):
@@ -35,8 +36,15 @@ class questionObject:
     def getRightAnswer(self):
         return self.__rightAnswer
 
+    def setPoints(self, points):
+        if isinstance(points, int):
+            self.__points = points
+
+    def getPoints(self):
+        return self.__points
+
     def printQuestionWithNumber(self):
-        print(self.__questionNumber + " " + self.__question)
+        print("{}. ".format(self.__questionNumber) + self.__question)
 
     def printObject(self):
-        return str(self.__questionNumber) + " " + str(self.__question) + " " + str(self.__answerOptions) + " " + str(self.__rightAnswer)
+        print("{}. ".format(self.__questionNumber) + str(self.__question) + " " + str(self.__answerOptions) + " " + str(self.__rightAnswer))
