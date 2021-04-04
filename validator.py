@@ -8,7 +8,7 @@ maxFileNameLength = 30
 
 acceptedAnswersForFileQuesiton = ["no", "yes"]
 
-acceptedAnswers = ["a","b","c"]
+acceptedAnswers = ["a","b","c","s"]
 acceptedQuestionNumberRegex = "[0-9]{0,3}\. "
 questionNumberRegex = "[0-9]{1,3}\."
 questionPartRegex = "question: [A-Za-z0-9 ,’]+\?"
@@ -38,16 +38,13 @@ def isValidAnswer(answer):
 def isValidFileName(fileName):
     fileNameresultObject = re.search(acceptedFileName, fileName)
     if fileNameresultObject is not None:
-        print(fileNameresultObject.group())
         if fileNameresultObject.group() == fileName:
             return len(fileNameresultObject.group()) <= maxFileNameLength
     return False
 
 def isValidFileLine(lineToValidate):
     lineResultObject = re.search(fileLineRegex, lineToValidate)
-    print("lineResult: {} and lineToValidate: {}".format(lineResultObject, lineToValidate))
     if lineResultObject is not None:
-        print("lineResultLenght: {} lineToValidateLenght: {}".format(len(lineResultObject.group()), len(lineToValidate.strip())))
         return len(lineResultObject.group()) == len(lineToValidate.strip())
     return False
 

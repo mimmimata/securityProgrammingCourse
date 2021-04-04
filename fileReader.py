@@ -20,26 +20,28 @@ class FileReader:
             self.__fileToRead = fileName
 
     def readFile(self, fileName):
-        print("readFilefunction reached")
         if isValidFileName(fileName):
-            print("if isValidFileName passed")
-            fileToRead = open(fileName, "r",  encoding="utf8")
-            amountOfReadLines = 0
-            if not amountOfReadLines > self.__maxFileLineAmount:
-                for line in fileToRead:
-                    amountOfReadLines = amountOfReadLines + 1
-                    if isValidFileLine(line):
-                        parsedQuestionObject = self.parseLine(line, amountOfReadLines)
-                        if parsedQuestionObject is not None:
-                            self.__questionStructure[parsedQuestionObject.getQuestionNumber()] = parsedQuestionObject
+            try:
+                fileToRead = open(fileName, "r",  encoding="utf8")
+                amountOfReadLines = 0
+                if not amountOfReadLines > self.__maxFileLineAmount:
+                    for line in fileToRead:
+                        amountOfReadLines = amountOfReadLines + 1
+                        if isValidFileLine(line):
+                            parsedQuestionObject = self.parseLine(line, amountOfReadLines)
+                            if parsedQuestionObject is not None:
+                                self.__questionStructure[parsedQuestionObject.getQuestionNumber()] = parsedQuestionObject
+                            else:
+                                return None
                         else:
+                            print("Error: stop reading the file and send some error here")
                             return None
-                    else:
-                        print("Error: stop reading the file and send some error here")
-                        return None
-            fileToRead.close()
+                fileToRead.close()
 
-        return self.__questionStructure
+                return self.__questionStructure
+            except FileNotFoundError:
+                print("Cannot find file!")
+                return None
 
     def parseLine(self, lineToParse, lineNumber):
 

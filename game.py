@@ -1,7 +1,5 @@
-from gameStatus import *
 from validator import *
 from fileReader import FileReader
-from questionObject import questionObject
 
 class Game:
 
@@ -9,7 +7,6 @@ class Game:
         self.__numberOfPlayers = amountOfPlayers
         self.__players = []
         self.setPlayers(players)
-        self.__gameStateObject = GameState()
         self.__fileReader = FileReader()
         self.__questionsDict = {}
         self.__round = 1
@@ -25,27 +22,36 @@ class Game:
             print("Error: players variable is not a list")
 
     def startGame(self):
-        self.printPlayers()
         self.__playersNumberOnTurn = 0
         isThereAFile = input("Do you have your own question file? no/yes ")
         if isValidAswerForOwnQuestionFile(isThereAFile):
             if isThereAFile == "no":
-                self.__fileReader.addFileToRead("readyQuestions.txt")
-                questions = self.__fileReader.readFile("readyQuestions.txt")
-                if questions is not None:
-                    self.__questionsDict = questions
+                self.initializeQuestions("readyQuestions.txt")
+            elif isThereAFile == "yes":
+                fileUserWantsToUse = input("Enter question file: ")
+                if isValidFileName(fileUserWantsToUse):
+                    self.initializeQuestions(fileUserWantsToUse)
+                else:
+                    print("Invalid file name! Game is terminated!")
+                    return
             self.runGame()
         else:
             print("Error: Incorrect input. Please enter 'no' or 'yes'")
 
+    def initializeQuestions(self, fileName):
+        self.__fileReader.addFileToRead(fileName)
+        questions = self.__fileReader.readFile(fileName)
+        if questions is not None:
+            self.__questionsDict = questions
+
     def runGame(self):
         while self.__round <= len(self.__questionsDict):
-            self.printPlayers()
             self.askQuestion()
             self.__round = self.__round + 1
             self.nextPlayer()
 
         self.endGame()
+
 
     def askQuestion(self):
         question = self.__questionsDict[str(self.__round)]
@@ -53,13 +59,16 @@ class Game:
         answerOptions = question.getAnswerOptions()
         for answerOption in answerOptions:
             print("{}. ".format(answerOption) + answerOptions[answerOption])
-        answer = input("{} input the correct answer: ".format(self.__players[self.__playersNumberOnTurn].getName()))
+        answer = input("{} input the correct answer (to see players points, press 's'): ".format(self.__players[self.__playersNumberOnTurn].getName()))
         if isValidAnswer(answer):
-            if answer == question.getRightAnswer():
+            if answer == 's':
+                self.printPlayersPoints()
+                self.askQuestion()
+            elif answer == question.getRightAnswer():
                 self.__players[self.__playersNumberOnTurn].addPoints(question.getPoints())
 
         else:
-            print("Invalid answer option! use only a, b or c")
+            print("Invalid answer option! Use only a, b or c")
             self.askQuestion()
 
     def nextPlayer(self):
@@ -69,13 +78,20 @@ class Game:
         else:
             self.__playersNumberOnTurn = nextPlayer
 
-    def printPlayers(self):
+    def printPlayersPoints(self):
         # Using for .. in structure it makes sure that any buffer overflows or off by one
         # vulnerabilities not arise because list is looped element by element not with size and counter.
         for player in self.__players:
-            player.printPlayer()
+            print("Player {} has {} points.".format(player.getName(), str(player.getPoints())))
 
     def endGame(self):
-        # If some one has for example ten points, then game is over
         print("Game over!")
-        self.printPlayers()
+        self.printPlayersPoints()
+        winnerPoints = 0
+        winner = self.__players[0]
+        for player in self.__players:
+            if player.getPoints() > winnerPoints:
+                winner = player
+                winnerPoints = player.getPoints()
+
+        print("The winner is: {}".format(winner.getName()))

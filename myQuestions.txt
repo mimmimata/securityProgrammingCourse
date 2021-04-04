@@ -1,0 +1,3 @@
+1. question: Who discovered penicillin? answer_options: [a. Alexander Fleming][b.][c.] correct_answer: [a]
+2. question: Who was the first woman to win a Nobel Prize in 1903? answer_options: [a. Marie Curie][b.][c.] correct_answer: [a]
+3. question: What part of the atom has no electric charge? answer_options: [a. Neutron][b.][c.] correct_answer: [a]
