@@ -16,7 +16,7 @@ questionPartRegex = "question: [A-Za-z0-9 ,’]+\?"
 answerOptionsPartRegex = "answer_options: \[a\.[A-Za-z0-9 ]+\]\[b\.[A-Za-z0-9 ]*\]\[c\.[A-Za-z0-9 ]*\]"
 rightAnswerPartRegex = "correct_answer: \[[a-c]{1}\]"
 #
-fileLineRegex = "[0-9]{1,3}\. question: [A-Za-z0-9 ]+\? answer_options: \[a\.[A-Za-z0-9 ]+\]\[b\.[A-Za-z0-9 ]*\]\[c\.[A-Za-z0-9 ]*\] correct_answer: \[[a-c]{1}\]"
+fileLineRegex = "[0-9]{1,3}\. question: [A-Za-z0-9 ,’]+\? answer_options: \[a\.[A-Za-z0-9 ]+\]\[b\.[A-Za-z0-9 ]*\]\[c\.[A-Za-z0-9 ]*\] correct_answer: \[[a-c]{1}\]"
 acceptedFileName = "[A-Za-z0-9_]+\.txt"
 
 def isValidPlayerAmount(playerAmount):
@@ -43,7 +43,6 @@ def isValidFileName(fileName):
             return len(fileNameresultObject.group()) <= maxFileNameLength
     return False
 
-# FIXME: make this return something real
 def isValidFileLine(lineToValidate):
     lineResultObject = re.search(fileLineRegex, lineToValidate)
     print("lineResult: {} and lineToValidate: {}".format(lineResultObject, lineToValidate))
