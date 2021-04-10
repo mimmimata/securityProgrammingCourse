@@ -6,7 +6,7 @@ validPlayerNameCharactersRegex = "[A-Za-z]+"
 maxPlayerNameLength = 20
 maxFileNameLength = 30
 
-acceptedAnswersForFileQuesiton = ["no", "yes"]
+acceptedAnswersForFileQuestion = ["no", "yes"]
 
 acceptedAnswers = ["a","b","c","s"]
 acceptedQuestionNumberRegex = "[0-9]{0,3}\. "
@@ -30,7 +30,7 @@ def isValidPlayerName(playerName):
     return False
 
 def isValidAswerForOwnQuestionFile(answer):
-    return answer in acceptedAnswersForFileQuesiton
+    return answer in acceptedAnswersForFileQuestion
 
 def isValidAnswer(answer):
     return answer in acceptedAnswers
