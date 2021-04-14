@@ -1,3 +1,6 @@
+"""
+Class contains information for one player
+"""
 class Player:
     def __init__(self, number, name):
         self.__number = number
@@ -32,5 +35,4 @@ class Player:
             print("error: points must be integer type")
 
     def printPlayer(self):
-        # TODO any vulnerabilities here?
         print("Player {}, name: {} and points {}".format(self.__number, self.__name, self.__points))

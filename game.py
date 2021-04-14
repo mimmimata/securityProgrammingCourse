@@ -1,6 +1,9 @@
 from validator import *
 from fileReader import FileReader
 
+"""
+This class contains actual game logic.
+"""
 class Game:
 
     def __init__(self, amountOfPlayers, players):
@@ -11,6 +14,7 @@ class Game:
         self.__questionsDict = {}
         self.__round = 1
         self.__playersNumberOnTurn = 0
+        self.__originalQuestionFileName = "myQuestions.txt"
 
     def setPlayers(self, players):
         if isinstance(players, list):
@@ -22,27 +26,35 @@ class Game:
             print("Error: players variable is not a list")
 
     def startGame(self):
-        self.__playersNumberOnTurn = 0
         isThereAFile = input("Do you have your own question file? no/yes ")
         if isValidAswerForOwnQuestionFile(isThereAFile):
             if isThereAFile == "no":
-                self.initializeQuestions("readyQuestions.txt")
+                self.initializeQuestions(self.__originalQuestionFileName)
             elif isThereAFile == "yes":
-                fileUserWantsToUse = input("Enter question file: ")
-                if isValidFileName(fileUserWantsToUse):
-                    self.initializeQuestions(fileUserWantsToUse)
-                else:
-                    print("Invalid file name! Game is terminated!")
-                    return
+                while True:
+                    fileUserWantsToUse = input("Enter question file: ")
+                    if isValidFileName(fileUserWantsToUse):
+                        self.initializeQuestions(fileUserWantsToUse)
+                        break
+                    elif fileUserWantsToUse == "no":
+                        self.initializeQuestions(self.__originalQuestionFileName)
+                        break
+                    else:
+                        print("Invalid file! Please enter correct file name or enter 'no' if you want to continue with file in game!")
+            if len(self.__questionsDict) == 0:
+                print("Error: original question file was empty!")
+                self.startGame()
             self.runGame()
         else:
             print("Error: Incorrect input. Please enter 'no' or 'yes'")
+            self.startGame()
 
     def initializeQuestions(self, fileName):
         self.__fileReader.addFileToRead(fileName)
         questions = self.__fileReader.readFile(fileName)
         if questions is not None:
             self.__questionsDict = questions
+
 
     def runGame(self):
         while self.__round <= len(self.__questionsDict):

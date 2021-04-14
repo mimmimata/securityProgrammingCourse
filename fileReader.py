@@ -7,6 +7,9 @@ rightAnswerTextPart = "correct_answer: "
 leftBracketPart = "["
 rightBracketPart = "]"
 
+"""
+Class for containing all functionality what is needed to read and parse question file.
+"""
 class FileReader:
 
     def __init__(self):
@@ -24,7 +27,7 @@ class FileReader:
             try:
                 fileToRead = open(fileName, "r",  encoding="utf8")
                 amountOfReadLines = 0
-                if not amountOfReadLines > self.__maxFileLineAmount:
+                if amountOfReadLines <= self.__maxFileLineAmount:
                     for line in fileToRead:
                         amountOfReadLines = amountOfReadLines + 1
                         if isValidFileLine(line):
@@ -34,8 +37,9 @@ class FileReader:
                             else:
                                 return None
                         else:
-                            parsedQuestionObject = self.parseLine(line, amountOfReadLines)
-                            print("Error: parsing problem")
+                            # parseLine is called even for not valid file line so user gets an accurate error message
+                            # which tells where the problem is.
+                            self.parseLine(line, amountOfReadLines)
                             return None
                 fileToRead.close()
 
@@ -74,7 +78,7 @@ class FileReader:
         if questionResultObject is not None:
             notParsedQuestion = questionResultObject.group()
             return notParsedQuestion.replace(questionTextPart, '')
-        print("Error parsing line. Invalid or missing question on line {} ".format(lineNumber))s
+        print("Error parsing line. Invalid or missing question on line {} ".format(lineNumber))
         return None
 
     def parseAswerOptions(self, lineToParse, answerOptions, lineNumber):

@@ -1,4 +1,6 @@
-# Class to hold information for one question
+"""
+Class to hold information for one question.
+"""
 class questionObject:
 
     def __init__(self, questionNumber, question, answerOptions, rightAnswer):
