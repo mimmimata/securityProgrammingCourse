@@ -34,7 +34,8 @@ class FileReader:
                             else:
                                 return None
                         else:
-                            print("Error: stop reading the file and send some error here")
+                            parsedQuestionObject = self.parseLine(line, amountOfReadLines)
+                            print("Error: parsing problem")
                             return None
                 fileToRead.close()
 

@@ -1,6 +1,10 @@
 import unittest
 import validator
 
+"""
+This file contains test classes for functions inside validatorFile.
+"""
+
 class TestsForIsValidPlayerAmountFunction(unittest.TestCase):
 
     def test_correctAmount(self):
@@ -33,9 +37,9 @@ class TestsForIsValidPlayerNameFunction(unittest.TestCase):
     def test_spaceInName(self):
         self.assertFalse(validator.isValidPlayerName("Test Name"))
 
-    # FIXME!!!!
-    def test_integerParameter(self):
+    def test_numberParameter(self):
         self.assertFalse(validator.isValidPlayerName("12"))
+        #TODO!! FIXME!! kirjoita raporttiin tai keksi tapa testata int 12 arvolla eli regex testit tai sitten laita että on puute
         #with self.assertRaisesRegex(TypeError, validator.isValidPlayerName('12')):
          #   raise TypeError('12')
         #self.assertRaises(TypeError, validator.isValidPlayerName(12))
@@ -67,6 +71,51 @@ class TestsForIsValidAnswerFunction(unittest.TestCase):
 
     def test_withIncorrectParameterType(self):
         self.assertFalse(validator.isValidAnswer(324))
+
+
+class TestsForIsValidFileNameFunction(unittest.TestCase):
+    def test_withCorrectFileName(self):
+        self.assertTrue(validator.isValidFileName("correctTestName.txt"))
+
+    def test_withCorrectFileName2(self):
+        self.assertTrue(validator.isValidFileName("correct_test_file_2.txt"))
+
+    def test_withSpaces(self):
+        self.assertFalse(validator.isValidFileName("test file 2.txt"))
+
+    def test_withoutFileFormat(self):
+        self.assertFalse(validator.isValidFileName("testName"))
+
+    def test_withWrongFileFormat(self):
+        self.assertFalse(validator.isValidFileName("testName.svg"))
+
+    def test_withSomeInvalidCharacters(self):
+        self.assertFalse(validator.isValidFileName("#¤23423&#^^"))
+
+
+class TestsForIsValidFileLine(unittest.TestCase):
+    def test_withCorrectLine(self):
+        self.assertTrue(validator.isValidFileLine(
+            "1. question: Who discovered penicillin? answer_options: [a. Alexander Fleming][b.][c.] correct_answer: [a]"))
+
+    def test_withCorrectLine2(self):
+        self.assertTrue(validator.isValidFileLine(
+            "1. question: Who discovered penicillin? answer_options: [a. Alexander Fleming][b. some one else ][c. some one else] correct_answer: [b]"))
+
+    def test_withoutLineQuestionNumber(self):
+        self.assertFalse(validator.isValidFileLine(
+            "question: Who discovered penicillin? answer_options: [a. Alexander Fleming][b. some one else ][c. some one else] correct_answer: [b]"))
+
+    def test_withoutAnswerOptions(self):
+        self.assertFalse(validator.isValidFileLine(
+            "1. question: Who discovered penicillin? correct_answer: [b]"))
+
+    def test_withoutCorrectAnswer(self):
+        self.assertFalse(validator.isValidFileLine(
+            "1. question: Who discovered penicillin? answer_options: [a. Alexander Fleming][b.][c.]"))
+
+    def test_randomLineContent(self):
+        self.assertFalse(validator.isValidFileLine("hello 3%#//&%/randomrandom___rrandom"))
 
 if __name__ == '__main__':
     unittest.main()
