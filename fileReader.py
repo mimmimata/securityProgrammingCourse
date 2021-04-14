@@ -46,22 +46,38 @@ class FileReader:
 
     def parseLine(self, lineToParse, lineNumber):
 
-        questionNumber = None
-        question = None
         # answerOptionsDict: key: a,b or c and value: answer
         answerOptions = {}
-        rightAnswer = None
 
+        questionNumber = self.parseQuestionNumber(lineToParse, lineNumber)
+        if questionNumber is not None:
+            question = self.parseQuestion(lineToParse, lineNumber)
+            if question is not None:
+                answerOptions = self.parseAswerOptions(lineToParse, answerOptions, lineNumber)
+                if answerOptions is not None and len(answerOptions) > 0:
+                    rightAnswer = self.parseCorrectAnswer(lineToParse, lineNumber)
+                    if rightAnswer is not None:
+                        readyQuestion = questionObject(questionNumber, question, answerOptions, rightAnswer)
+                        return readyQuestion
+        return None
+
+    def parseQuestionNumber(self, lineToParse, lineNumber):
         questionNumberResultObject = re.search(questionNumberRegex, lineToParse)
         if questionNumberResultObject is not None:
             questionNumberAndDot = questionNumberResultObject.group()
-            questionNumber = questionNumberAndDot.replace(".", '')
+            return questionNumberAndDot.replace(".", '')
+        print("Error parsing line. Invalid or missing question number on line {} ".format(lineNumber))
+        return None
 
+    def parseQuestion(self, lineToParse, lineNumber):
         questionResultObject = re.search(questionPartRegex, lineToParse)
         if questionResultObject is not None:
             notParsedQuestion = questionResultObject.group()
-            question = notParsedQuestion.replace(questionTextPart, '')
+            return notParsedQuestion.replace(questionTextPart, '')
+        print("Error parsing line. Invalid or missing question on line {} ".format(lineNumber))s
+        return None
 
+    def parseAswerOptions(self, lineToParse, answerOptions, lineNumber):
         answerOptionsResultObject = re.search(answerOptionsPartRegex, lineToParse)
         if answerOptionsResultObject is not None:
             notParsedAnswerOptions = answerOptionsResultObject.group()
@@ -73,16 +89,15 @@ class FileReader:
                     answerOptions[answerOption[0]] = answerOption[3:]
                 elif len(answerOption) > 1:
                     answerOptions[answerOption[0]] = ''
+            return answerOptions
+        print("Error parsing line. Invalid or missing answer options on line {} ".format(lineNumber))
+        return None
 
+    def parseCorrectAnswer(self, lineToParse, lineNumber):
         rightAnswerResultObject = re.search(rightAnswerPartRegex, lineToParse)
         if rightAnswerResultObject is not None:
             notParsedRightAnswer = rightAnswerResultObject.group()
-            rightAnswer = notParsedRightAnswer.replace(rightAnswerTextPart, '').replace(leftBracketPart, '').replace(rightBracketPart, '')
-
-        if questionNumber is not None and question is not None and len(answerOptions) > 0 and rightAnswer is not None:
-            readyQuestion = questionObject(questionNumber, question, answerOptions, rightAnswer)
-            return readyQuestion
-        else:
-            print("Error parsing line. Please check that line is on correct format and only allowed characters are used. Line number was: " + str(lineNumber))
-            return None
-
+            return notParsedRightAnswer.replace(rightAnswerTextPart, '').replace(leftBracketPart, '').replace(
+                rightBracketPart, '')
+        print("Error parsing line. Invalid or missing correct answer on line {} ".format(lineNumber))
+        return None
