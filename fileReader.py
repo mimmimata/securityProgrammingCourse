@@ -57,6 +57,7 @@ class FileReader:
         if questionNumber is not None:
             question = self.parseQuestion(lineToParse, lineNumber)
             if question is not None:
+                #
                 answerOptions = self.parseAswerOptions(lineToParse, answerOptions, lineNumber)
                 if answerOptions is not None and len(answerOptions) > 0:
                     rightAnswer = self.parseCorrectAnswer(lineToParse, lineNumber)
@@ -93,6 +94,7 @@ class FileReader:
                     answerOptions[answerOption[0]] = answerOption[3:]
                 elif len(answerOption) > 1:
                     answerOptions[answerOption[0]] = ''
+            print(answerOptions)
             return answerOptions
         print("Error parsing line. Invalid or missing answer options on line {} ".format(lineNumber))
         return None

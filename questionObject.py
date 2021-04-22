@@ -6,6 +6,7 @@ class questionObject:
     def __init__(self, questionNumber, question, answerOptions, rightAnswer):
         self.__questionNumber = questionNumber
         self.__question = question
+        # AnswerOptions is dict which key: answerOptionCharacter as a string and value: string
         self.__answerOptions = answerOptions
         self.__rightAnswer = rightAnswer
         self.__points = 1

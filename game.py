@@ -19,7 +19,7 @@ class Game:
     def setPlayers(self, players):
         if isinstance(players, list):
             if len(players) > self.__numberOfPlayers:
-                print("Error: could not add more players that what is set to be amount of players. Game over")
+                print("Error: could not add more players that what is set to be amount of players.")
             else:
                 self.__players = players
         else:
@@ -100,7 +100,8 @@ class Game:
         print("Game over!")
         self.printPlayersPoints()
         winnerPoints = 0
-        winner = self.__players[0]
+        if len(self.__players) != 0:
+            winner = self.__players[0]
         for player in self.__players:
             if player.getPoints() > winnerPoints:
                 winner = player
