@@ -94,7 +94,6 @@ class FileReader:
                     answerOptions[answerOption[0]] = answerOption[3:]
                 elif len(answerOption) > 1:
                     answerOptions[answerOption[0]] = ''
-            print(answerOptions)
             return answerOptions
         print("Error parsing line. Invalid or missing answer options on line {} ".format(lineNumber))
         return None

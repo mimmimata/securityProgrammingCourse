@@ -24,8 +24,9 @@ def main():
     i = 0
     while i < amountOfPlayers:
         playername = input("Enter username of {}. player: ".format(playerNumber))
-        if not isValidPlayerName(playername):
-            return
+        while not isValidPlayerName(playername):
+            print("Error: Invalid player name, allowed characters A-Z and a-z and allowed name length is 20 characters.")
+            playername = input("Enter username of {}. player: ".format(playerNumber))
         player = Player(playerNumber, playername)
         playersList.append(player)
         playerNumber = playerNumber + 1
