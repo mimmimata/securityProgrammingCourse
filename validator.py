@@ -5,6 +5,7 @@ acceptedPlayerAmounts = ["2","3","4"]
 validPlayerNameCharactersRegex = "[A-Za-z]+"
 maxPlayerNameLength = 20
 maxFileNameLength = 30
+maxFileLineAmount = 300
 
 acceptedAnswersForFileQuestion = ["no", "yes"]
 
@@ -47,7 +48,3 @@ def isValidFileLine(lineToValidate):
     if lineResultObject is not None:
         return len(lineResultObject.group()) == len(lineToValidate.strip())
     return False
-
-# white listing
-#black listing
-#regex

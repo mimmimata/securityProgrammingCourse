@@ -6,7 +6,6 @@ from validator import *
 def main():
     playersList = []
 
-    amountOfPlayers = 0
     while True:
         try:
             amountOfPlayersString = str(input("Enter amount of wanted players (2-4): "))
