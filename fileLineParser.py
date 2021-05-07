@@ -23,7 +23,6 @@ def parseLine(lineToParse, lineNumber):
     if questionNumber is not None:
         question = parseQuestion(lineToParse, lineNumber)
         if question is not None:
-            #
             answerOptions = parseAswerOptions(lineToParse, answerOptions, lineNumber)
             if answerOptions is not None and len(answerOptions) > 0:
                 rightAnswer = parseCorrectAnswer(lineToParse, lineNumber)

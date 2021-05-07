@@ -14,6 +14,8 @@ class questionObject:
     def setQuestionNumber(self, questionNumber):
         if isinstance(questionNumber, int):
             self.__questionNumber = questionNumber
+        else:
+            print("Error: questionNumber is not an integer and cannot be inserted to the question object.")
 
     def getQuestionNumber(self):
         return self.__questionNumber
@@ -21,6 +23,8 @@ class questionObject:
     def setQuestion(self, question):
         if isinstance(question, str):
             self.__question = question
+        else:
+            print("Error: question is not a string and cannot be inserted to the question object.")
 
     def getQuestion(self):
         return self.__question
@@ -28,6 +32,8 @@ class questionObject:
     def setAnswerOptions(self, answerOptions):
         if isinstance(answerOptions, dict):
             self.__answerOptions = answerOptions
+        else:
+            print("Error: answerOptions is not a dict and cannot be inserted to the question object.")
 
     def getAnswerOptions(self):
         return self.__answerOptions
@@ -35,6 +41,8 @@ class questionObject:
     def setRightAnswer(self, rightAnswer):
         if isinstance(rightAnswer, str):
             self.__rightAnswer = rightAnswer
+        else:
+            print("Error: rightAnswer is not a string and cannot be inserted to the question object.")
 
     def getRightAnswer(self):
         return self.__rightAnswer
@@ -42,6 +50,8 @@ class questionObject:
     def setPoints(self, points):
         if isinstance(points, int):
             self.__points = points
+        else:
+            print("Error: points is not an integer and cannot be inserted to the question object.")
 
     def getPoints(self):
         return self.__points

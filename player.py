@@ -23,7 +23,7 @@ class Player:
         if isinstance(points, int):
             self.__points = points
         else:
-            print("error: points must be integer type")
+            print("Error: points must be integer type")
 
     def addPoints(self, points):
         # For security reason lets check that points are actually integer so that this function do not add something
@@ -32,7 +32,7 @@ class Player:
         if isinstance(points, int):
             self.__points = self.__points + points
         else:
-            print("error: points must be integer type")
+            print("Error: points must be integer type")
 
     def printPlayer(self):
         print("Player {}, name: {} and points {}".format(self.__number, self.__name, self.__points))
