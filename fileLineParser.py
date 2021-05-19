@@ -15,6 +15,12 @@ in each function because these parse functions are also used to invalid file lin
 line and which part of the line has problems.
 """
 
+"""
+Parses line from file and return ready question object.
+@:parameter lineToParse line which parsing is made
+@:parameter lineNumber number of that line from file where line is got.
+@:return questionObject containing all necessary information if it can be created, None otherwise.
+"""
 def parseLine(lineToParse, lineNumber):
     # answerOptionsDict: key: a,b or c and value: answer
     answerOptions = {}
@@ -31,7 +37,12 @@ def parseLine(lineToParse, lineNumber):
                     return readyQuestion
     return None
 
-
+"""
+Parses question number from file line and returns it.
+@:parameter lineToParse line which parsing is made.
+@:parameter lineNumber number of that line from file where line is got.
+@:return question number if it is found, None otherwise.
+"""
 def parseQuestionNumber(lineToParse, lineNumber):
     questionNumberResultObject = re.search(questionNumberRegex, lineToParse)
     if questionNumberResultObject is not None:
@@ -40,7 +51,12 @@ def parseQuestionNumber(lineToParse, lineNumber):
     print("Error parsing line. Invalid or missing question number on line {} ".format(lineNumber))
     return None
 
-
+"""
+Parses question from file line and returns it.
+@:parameter lineToParse line which parsing is made.
+@:parameter lineNumber number of that line from file where line is got.
+@:return question if it is found, None otherwise.
+"""
 def parseQuestion(lineToParse, lineNumber):
     questionResultObject = re.search(questionPartRegex, lineToParse)
     if questionResultObject is not None:
@@ -49,7 +65,13 @@ def parseQuestion(lineToParse, lineNumber):
     print("Error parsing line. Invalid or missing question on line {} ".format(lineNumber))
     return None
 
-
+"""
+Parses answer options from file line and returns them.
+@:parameter lineToParse line which parsing is made.
+@:parameter answerOptions dict where answerOptions are added.
+@:parameter lineNumber number of that line from file where line is got.
+@:return answerOptions as a dict if it can be created, None otherwise.
+"""
 def parseAswerOptions(lineToParse, answerOptions, lineNumber):
     answerOptionsResultObject = re.search(answerOptionsPartRegex, lineToParse)
     if answerOptionsResultObject is not None:
@@ -66,7 +88,12 @@ def parseAswerOptions(lineToParse, answerOptions, lineNumber):
     print("Error parsing line. Invalid or missing answer options on line {} ".format(lineNumber))
     return None
 
-
+"""
+Parses correct answer from file line and returns it.
+@:parameter lineToParse line which parsing is made
+@:parameter lineNumber number of that line from file where line is got.
+@:return correct answer if it is found, None otherwise.
+"""
 def parseCorrectAnswer(lineToParse, lineNumber):
     rightAnswerResultObject = re.search(rightAnswerPartRegex, lineToParse)
     if rightAnswerResultObject is not None:
