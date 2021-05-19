@@ -17,21 +17,23 @@ class Player:
         return self.__points
 
     def setPoints(self, points):
-        # For security reason lets check that points are actually integer so that this function do not insert something
+        # SECURE_PROGRAMMING_SOLUTION: For security reason lets check that points are actually integer so that this function do not insert something
         # else in self.__points variable and that way cause some unexcepted behaviour in program and possible
         # vulnerabilities
         if isinstance(points, int):
             self.__points = points
         else:
+            # SECURE_PROGRAMMING_SOLUTION: Error handling and informing user.
             print("Error: points must be integer type")
 
     def addPoints(self, points):
-        # For security reason lets check that points are actually integer so that this function do not add something
+        # SECURE_PROGRAMMING_SOLUTION: For security reason lets check that points are actually integer so that this function do not add something
         # else in self.__points variable and that way cause some unexcepted behaviour in program and possible
         # vulnerabilities
         if isinstance(points, int):
             self.__points = self.__points + points
         else:
+            # SECURE_PROGRAMMING_SOLUTION: Error handling and informing user.
             print("Error: points must be integer type")
 
     def printPlayer(self):
