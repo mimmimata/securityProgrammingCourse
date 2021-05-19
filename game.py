@@ -50,7 +50,6 @@ class Game:
             self.startGame()
 
     def initializeQuestions(self, fileName):
-        self.__fileReader.addFileToRead(fileName)
         questions = self.__fileReader.readFile(fileName)
         if questions is not None:
             self.__questionsDict = questions

@@ -6,13 +6,9 @@ Class for containing all functionality what is needed to read question file.
 class FileReader:
 
     def __init__(self):
-        self.__fileToRead = None
         # key: question number, value: questionObject
         self.__questionStructure = {}
 
-    def addFileToRead(self, fileName):
-        if isValidFileName(fileName):
-            self.__fileToRead = fileName
 
     def readFile(self, fileName):
         if isValidFileName(fileName):
