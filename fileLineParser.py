@@ -44,10 +44,15 @@ Parses question number from file line and returns it.
 @:return question number if it is found, None otherwise.
 """
 def parseQuestionNumber(lineToParse, lineNumber):
+    # SECURE_PROGRAMMING_SOLUTION: Using specific regex to find only wanted part from line.
     questionNumberResultObject = re.search(questionNumberRegex, lineToParse)
+
+    # SECURE_PROGRAMMING_SOLUTION: result object needs to be check that it is not None before modifying it.
     if questionNumberResultObject is not None:
         questionNumberAndDot = questionNumberResultObject.group()
         return questionNumberAndDot.replace(".", '')
+
+    # SECURE_PROGRAMMING_SOLUTION: Error handling and informing user.
     print("Error parsing line. Invalid or missing question number on line {} ".format(lineNumber))
     return None
 
@@ -58,10 +63,15 @@ Parses question from file line and returns it.
 @:return question if it is found, None otherwise.
 """
 def parseQuestion(lineToParse, lineNumber):
+    # SECURE_PROGRAMMING_SOLUTION: Using specific regex to find only wanted part from line.
     questionResultObject = re.search(questionPartRegex, lineToParse)
+
+    # SECURE_PROGRAMMING_SOLUTION: result object needs to be check that it is not None before modifying it.
     if questionResultObject is not None:
         notParsedQuestion = questionResultObject.group()
         return notParsedQuestion.replace(questionTextPart, '')
+
+    # SECURE_PROGRAMMING_SOLUTION: Error handling and informing user.
     print("Error parsing line. Invalid or missing question on line {} ".format(lineNumber))
     return None
 
@@ -73,7 +83,10 @@ Parses answer options from file line and returns them.
 @:return answerOptions as a dict if it can be created, None otherwise.
 """
 def parseAswerOptions(lineToParse, answerOptions, lineNumber):
+    # SECURE_PROGRAMMING_SOLUTION: Using specific regex to find only wanted part from line.
     answerOptionsResultObject = re.search(answerOptionsPartRegex, lineToParse)
+
+    # SECURE_PROGRAMMING_SOLUTION: result object needs to be check that it is not None before modifying it.
     if answerOptionsResultObject is not None:
         notParsedAnswerOptions = answerOptionsResultObject.group()
         answerOptionsTextPartRemoved = notParsedAnswerOptions.replace(answerOptionsTextPart, '')
@@ -85,6 +98,8 @@ def parseAswerOptions(lineToParse, answerOptions, lineNumber):
             elif len(answerOption) > 1:
                 answerOptions[answerOption[0]] = ''
         return answerOptions
+
+    # SECURE_PROGRAMMING_SOLUTION: Error handling and informing user.
     print("Error parsing line. Invalid or missing answer options on line {} ".format(lineNumber))
     return None
 
@@ -95,10 +110,15 @@ Parses correct answer from file line and returns it.
 @:return correct answer if it is found, None otherwise.
 """
 def parseCorrectAnswer(lineToParse, lineNumber):
+    # SECURE_PROGRAMMING_SOLUTION: Using specific regex to find only wanted part from line.
     rightAnswerResultObject = re.search(rightAnswerPartRegex, lineToParse)
+
+    # SECURE_PROGRAMMING_SOLUTION: result object needs to be check that it is not None before modifying it.
     if rightAnswerResultObject is not None:
         notParsedRightAnswer = rightAnswerResultObject.group()
         return notParsedRightAnswer.replace(rightAnswerTextPart, '').replace(leftBracketPart, '').replace(
             rightBracketPart, '')
+
+    # SECURE_PROGRAMMING_SOLUTION: Error handling and informing user.
     print("Error parsing line. Invalid or missing correct answer on line {} ".format(lineNumber))
     return None
