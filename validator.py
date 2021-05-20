@@ -1,5 +1,10 @@
 import re
 
+"""
+This file contains validation functions that can be used validate for example validate user inputs. 
+These functions are collected in one file to make program structure more clear.
+"""
+
 acceptedPlayerAmounts = ["2","3","4"]
 
 validPlayerNameCharactersRegex = "[A-Za-z]+"
@@ -10,13 +15,15 @@ maxFileLineAmount = 300
 acceptedAnswersForFileQuestion = ["no", "yes"]
 
 acceptedAnswers = ["a","b","c","s"]
+
+# SECURE_PROGRAMMING_SOLUTION: Using regexs for making sure that only allowed character in right order can be
+# inputted to the program.
 acceptedQuestionNumberRegex = "[0-9]{0,3}\. "
 questionNumberRegex = "[0-9]{1,3}\."
 questionPartRegex = "question: [A-Za-z0-9 ,’]+\?"
 # Must have a, b and c. If only a and b has answers, c have to be also marked but answer option can be empty
 answerOptionsPartRegex = "answer_options: \[a\.[A-Za-z0-9 ]+\]\[b\.[A-Za-z0-9 ]*\]\[c\.[A-Za-z0-9 ]*\]"
 rightAnswerPartRegex = "correct_answer: \[[a-c]{1}\]"
-#
 fileLineRegex = "[0-9]{1,3}\. question: [A-Za-z0-9 ,’]+\? answer_options: \[a\.[A-Za-z0-9 ]+\]\[b\.[A-Za-z0-9 ]*\]\[c\.[A-Za-z0-9 ]*\] correct_answer: \[[a-c]{1}\]"
 acceptedFileName = "[A-Za-z0-9_]+\.txt"
 
