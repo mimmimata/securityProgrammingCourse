@@ -1,6 +1,9 @@
 import unittest
 from player import Player
 
+"""
+Unit test class for testing functions of player class.
+"""
 class PlayerObjectTestCase(unittest.TestCase):
 
     def setup(self):

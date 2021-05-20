@@ -1,6 +1,9 @@
 import unittest
 from questionObject import questionObject
 
+"""
+Unit test class for testing functions of question class.
+"""
 class QuestionObjectTestCase(unittest.TestCase):
 
     def setup(self):

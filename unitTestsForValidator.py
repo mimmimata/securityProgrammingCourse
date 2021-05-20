@@ -2,7 +2,7 @@ import unittest
 import validator
 
 """
-This file contains test classes for functions inside validatorFile.
+This file contains test classes for functions inside validator file.
 """
 
 class TestsForIsValidPlayerAmountFunction(unittest.TestCase):
@@ -39,10 +39,6 @@ class TestsForIsValidPlayerNameFunction(unittest.TestCase):
 
     def test_numberParameter(self):
         self.assertFalse(validator.isValidPlayerName("12"))
-        #TODO!! FIXME!! kirjoita raporttiin tai keksi tapa testata int 12 arvolla eli regex testit tai sitten laita että on puute
-        #with self.assertRaisesRegex(TypeError, validator.isValidPlayerName('12')):
-         #   raise TypeError('12')
-        #self.assertRaises(TypeError, validator.isValidPlayerName(12))
 
     def test_incorrectCharacters(self):
         self.assertFalse(validator.isValidPlayerName("3rwecs7%6f"))
@@ -93,7 +89,7 @@ class TestsForIsValidFileNameFunction(unittest.TestCase):
         self.assertFalse(validator.isValidFileName("#¤23423&#^^"))
 
 
-class TestsForIsValidFileLine(unittest.TestCase):
+class TestsForIsValidFileLineFunction(unittest.TestCase):
     def test_withCorrectLine(self):
         self.assertTrue(validator.isValidFileLine(
             "1. question: Who discovered penicillin? answer_options: [a. Alexander Fleming][b.][c.] correct_answer: [a]"))
@@ -118,4 +114,5 @@ class TestsForIsValidFileLine(unittest.TestCase):
         self.assertFalse(validator.isValidFileLine("hello 3%#//&%/randomrandom___rrandom"))
 
 if __name__ == '__main__':
+    # This will run all tests for inside this unitTestsForValidator file.
     unittest.main()
