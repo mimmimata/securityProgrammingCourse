@@ -21,7 +21,7 @@ def main():
             amountOfPlayers = int(amountOfPlayersString)
             break
         else:
-            print("Invalid number of players, player amount needs to be between 2 and 4.")
+            print("Error: Invalid number of players, player amount needs to be between 2 and 4.")
     playerNumber = 1
     i = 0
     while i < amountOfPlayers:

@@ -16,7 +16,6 @@ class Game:
         self.__playersNumberOnTurn = 0
         self.__originalQuestionFileName = "myQuestions.txt"
 
-
     """
     Sets players.
     @:parameter players list of players
@@ -61,7 +60,8 @@ class Game:
                 # SECURE_PROGRAMMING_SOLUTION: Error handling and informing user.
                 print("Error: No questions on game because there occured a problem during reading the question file!")
                 self.startGame()
-            self.runGame()
+            else:
+                self.runGame()
         else:
             # SECURE_PROGRAMMING_SOLUTION: Error handling and informing user.
             print("Error: Incorrect input. Please enter 'no' or 'yes'")
