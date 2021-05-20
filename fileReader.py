@@ -1,5 +1,6 @@
 from validator import *
 from fileLineParser import parseLine
+
 """
 Class for containing all functionality what is needed to read question file.
 """
