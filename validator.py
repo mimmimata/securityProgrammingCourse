@@ -2,7 +2,7 @@ import re
 # -*- coding: utf-8 -*-
 
 """
-This file contains validation functions that can be used validate for example validate user inputs. 
+This file contains validation functions that can be used validate for example user inputs. 
 These functions are collected in one file to make program structure more clear.
 """
 

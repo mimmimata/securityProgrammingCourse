@@ -7,3 +7,4 @@ You can also run the program using PyChram editor and there running main.py
 
 For now game only have command line user interface.
 
+Repository also include course work report and slides of presentation.

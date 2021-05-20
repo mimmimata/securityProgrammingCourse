@@ -13,7 +13,7 @@ def main():
             amountOfPlayersString = str(input("Enter amount of wanted players (2-4): "))
         # SECURE_PROGRAMMING_SOLUTION: Error handling and informing user.
         except ValueError:
-            print("User input cannot be casted as a string, something is horrible wrong!")
+            print("Error: User input cannot be casted as a string, something is horrible wrong!")
             return
 
         # SECURE_PROGRAMMING_SOLUTION: validating user input.
@@ -22,9 +22,9 @@ def main():
             break
         else:
             print("Error: Invalid number of players, player amount needs to be between 2 and 4.")
+
     playerNumber = 1
-    i = 0
-    while i < amountOfPlayers:
+    while playerNumber <= amountOfPlayers:
         playername = input("Enter username of {}. player: ".format(playerNumber))
         # SECURE_PROGRAMMING_SOLUTION: validating user input and while not valid asking playername again.
         while not isValidPlayerName(playername):
@@ -34,7 +34,6 @@ def main():
         player = Player(playerNumber, playername)
         playersList.append(player)
         playerNumber = playerNumber + 1
-        i = i + 1
     game = Game(amountOfPlayers, playersList)
     game.startGame()
 
