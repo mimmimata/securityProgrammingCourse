@@ -43,13 +43,13 @@ class FileReader:
                             return None
                 else:
                     # SECURE_PROGRAMMING_SOLUTION: Error handling and informing user.
-                    print("Error parsing line. There is too many lines in file. Allowed line amount is: {}".format(
+                    print("Error: Error parsing line. There is too many lines in file. Allowed line amount is: {}".format(
                         maxFileLineAmount))
                 fileToRead.close()
 
                 return self.__questionStructure
             except FileNotFoundError:
                 # SECURE_PROGRAMMING_SOLUTION: Error handling and informing user.
-                print("Cannot find file!")
+                print("Error: Cannot find file! Please check that file is in same dictionary than program codes.")
                 return None
 

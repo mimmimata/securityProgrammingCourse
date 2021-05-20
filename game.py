@@ -56,9 +56,10 @@ class Game:
                     else:
                         # SECURE_PROGRAMMING_SOLUTION: Error handling and informing user.
                         print("Error: Invalid file! Please enter correct file name or enter 'no' if you want to continue with file in game!")
+
             if len(self.__questionsDict) == 0:
                 # SECURE_PROGRAMMING_SOLUTION: Error handling and informing user.
-                print("Error: original question file was empty!")
+                print("Error: No questions on game because there occured a problem during reading the question file!")
                 self.startGame()
             self.runGame()
         else:

@@ -53,7 +53,7 @@ def parseQuestionNumber(lineToParse, lineNumber):
         return questionNumberAndDot.replace(".", '')
 
     # SECURE_PROGRAMMING_SOLUTION: Error handling and informing user.
-    print("Error parsing line. Invalid or missing question number on line {} ".format(lineNumber))
+    print("Error: Error parsing line. Invalid or missing question number on line {} ".format(lineNumber))
     return None
 
 """
@@ -72,7 +72,7 @@ def parseQuestion(lineToParse, lineNumber):
         return notParsedQuestion.replace(questionTextPart, '')
 
     # SECURE_PROGRAMMING_SOLUTION: Error handling and informing user.
-    print("Error parsing line. Invalid or missing question on line {} ".format(lineNumber))
+    print("Error: Error parsing line. Invalid or missing question on line {} ".format(lineNumber))
     return None
 
 """
@@ -100,7 +100,7 @@ def parseAswerOptions(lineToParse, answerOptions, lineNumber):
         return answerOptions
 
     # SECURE_PROGRAMMING_SOLUTION: Error handling and informing user.
-    print("Error parsing line. Invalid or missing answer options on line {} ".format(lineNumber))
+    print("Error: Error parsing line. Invalid or missing answer options on line {} ".format(lineNumber))
     return None
 
 """
@@ -120,5 +120,5 @@ def parseCorrectAnswer(lineToParse, lineNumber):
             rightBracketPart, '')
 
     # SECURE_PROGRAMMING_SOLUTION: Error handling and informing user.
-    print("Error parsing line. Invalid or missing correct answer on line {} ".format(lineNumber))
+    print("Error: Error parsing line. Invalid or missing correct answer on line {} ".format(lineNumber))
     return None
