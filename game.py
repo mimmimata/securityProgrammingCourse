@@ -134,7 +134,7 @@ class Game:
             print("Player {} has {} points.".format(player.getName(), str(player.getPoints())))
 
     """
-    Everything that it is need to be done 
+    Everything that it is need to be done when game ends.
     """
     def endGame(self):
         print("Game over!")
@@ -152,4 +152,16 @@ class Game:
                 winner = player
                 winnerPoints = player.getPoints()
 
-        print("The winner is: {}".format(winner.getName()))
+        playersWithSamePointAmount = []
+        # SECURE_PROGRAMMING_SOLUTION: No off by one vulnerability can arise when looping is done this way.
+        for player in self.__players:
+            if player.getPoints() == winner.getPoints():
+                playersWithSamePointAmount.append(player)
+
+        if len(playersWithSamePointAmount) > 1:
+            print("Game is tie with players: ")
+            # SECURE_PROGRAMMING_SOLUTION: No off by one vulnerability can arise when looping is done this way.
+            for player in playersWithSamePointAmount:
+                print("- {}".format(player.getName()))
+        else:
+            print("The winner is: {}".format(winner.getName()))
